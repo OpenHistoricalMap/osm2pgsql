@@ -12,7 +12,7 @@ generic_keys = {'access','addr:housename','addr:housenumber','addr:interpolation
 
 function add_z_order(keyvalues)
    z_order = 0
-   if (keyvalues["layer"] ~= nil ) then
+   if (keyvalues["layer"] ~= nil and tonumber(keyvalues["layer"]) ) then
       z_order = 10*keyvalues["layer"]
    end
 
@@ -77,6 +77,11 @@ function filter_tags_generic(keyvalues, nokeys)
           end
 
         end
+          --because I suck at patterns!
+          year = string.sub(year, 0, 4)
+          month = string.sub(month, 0, 2)
+          day = string.sub(day, 0, 2)
+
           start_date = year.. "-" .. month .. "-"..day
           keyvalues["start_date"] = start_date
           keyvalues["start_date_year"] =  year
@@ -102,6 +107,11 @@ function filter_tags_generic(keyvalues, nokeys)
           end
 
         end
+        --because I suck at patterns!
+          year = string.sub(year, 0, 4)
+          month = string.sub(month, 0, 2)
+          day = string.sub(day, 0, 2)
+
           end_date = year.. "-" .. month .. "-"..day
           keyvalues["end_date"] = end_date
           keyvalues["end_date_year"] =  year
